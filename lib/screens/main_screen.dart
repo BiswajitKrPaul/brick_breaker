@@ -25,7 +25,7 @@ class _MainScreenState extends State<MainScreen> {
   void startGame() {
     isGameStarted = true;
     isGameOver = false;
-    timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
+    timer = Timer.periodic(Duration(milliseconds: 60), (timer) {
       setState(() {
         if (isGameOver) {
           timer.cancel();
@@ -262,6 +262,8 @@ class _MainScreenState extends State<MainScreen> {
                             int rowX = (index / kTotalNoRow).floor();
                             bool isBreaker = false;
                             bool isBrick = false;
+                            BoxShape shape = BoxShape.rectangle;
+
                             Color color;
                             for (var pos in breaker) {
                               if (pos[0] == rowX && pos[1] == rowY) {
@@ -279,18 +281,25 @@ class _MainScreenState extends State<MainScreen> {
 
                             if (isBreaker) {
                               color = Colors.red;
+                              shape = BoxShape.rectangle;
                             } else if (isBrick) {
                               color = Colors.deepPurple;
+                              shape = BoxShape.rectangle;
                             } else if (rowX == ball.first[0] &&
                                 rowY == ball.first[1]) {
                               color = Colors.green;
+                              shape = BoxShape.circle;
                             } else {
                               color = Colors.transparent;
+                              shape = BoxShape.rectangle;
                             }
 
                             return Container(
                               margin: EdgeInsets.all(1),
-                              color: color,
+                              decoration: BoxDecoration(
+                                color: color,
+                                shape: shape,
+                              ),
                             );
                           },
                         ),

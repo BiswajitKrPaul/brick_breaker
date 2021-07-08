@@ -9,6 +9,8 @@ enum Direction {
 enum BallDirection {
   Up,
   Down,
-  LeftDiagonal,
-  RightDiagonal,
+  LeftDiagonalUp,
+  leftDiagonalDown,
+  RightDiagonalUp,
+  RightDiagonalDown,
 }
